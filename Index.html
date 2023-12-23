@@ -1,18 +1,41 @@
 <!-- frontend/index.html -->
-<!-- ... (previous content) ... -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seamless API Switching</title>
+</head>
+<body>
+    <h1>Data from Backend:</h1>
+    <p id="data"></p>
 
-<button onclick="switchBackend()">Switch Backend</button>
+    <button onclick="switchBackend()">Switch Backend</button>
 
-<script>
-    // ... (previous content) ...
+    <script>
+        // Basic frontend logic using Fetch API
+        const fetchData = async () => {
+            try {
+                const response = await fetch('http://localhost:3001/api/data');
+                const data = await response.json();
+                document.getElementById('data').textContent = data.message;
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
 
-    // Function to switch the backend
-    const switchBackend = async () => {
-        try {
-            await fetch('http://localhost:3001/api/switch');
-            fetchData(); // Fetch and display data after the switch
-        } catch (error) {
-            console.error('Error switching backend:', error);
-        }
-    };
-</script>
+        // Function to switch the backend
+        const switchBackend = async () => {
+            try {
+                await fetch('http://localhost:3001/api/switch');
+                fetchData(); // Fetch and display data after the switch
+            } catch (error) {
+                console.error('Error switching backend:', error);
+            }
+        };
+
+        // Initial data fetch
+        fetchData();
+    </script>
+</body>
+</html>
