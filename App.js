@@ -20,4 +20,3 @@ app.get('/api/switch', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Backend listening on port ${PORT}`);
 });
-￼Enter
