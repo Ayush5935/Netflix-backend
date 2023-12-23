@@ -3,14 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Backend Swapper</title>
+    <title>Backend Swapping</title>
 </head>
 <body>
-    <h1>Data from Backend:</h1>
-    <div id="data-container"></div>
+
+    <h1>Backend Swapping Demo</h1>
+
+    <p id="dataDisplay">Data will be displayed here</p>
+
     <button onclick="fetchData()">Fetch Data</button>
     <button onclick="switchBackend()">Switch Backend</button>
 
-    <script src="frontend.js"></script>
+    <script>
+        let backendUrl = 'http://localhost:3000/api/data';
+
+        async function fetchData() {
+            try {
+                const response = await fetch(backendUrl);
+                const data = await response.json();
+                document.getElementById('dataDisplay').innerText = `Data: ${data.message}`;
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
+
+        async function switchBackend() {
+            try {
+                const response = await fetch('http://localhost:3000/api/switch');
+                const result = await response.text();
+
+                if (result === 'Switched to New Backend') {
+                    backendUrl = 'http://localhost:3001/api/data';
+                    console.log('Switched to New Backend');
+                } else {
+                    backendUrl = 'http://localhost:3000/api/data';
+                    console.log('Switched to Old Backend');
+                }
+
+                document.getElementById('dataDisplay').innerText = 'Backend switched successfully';
+            } catch (error) {
+                console.error('Error switching backend:', error);
+            }
+        }
+    </script>
+
 </body>
 </html>
