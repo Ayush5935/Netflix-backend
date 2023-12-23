@@ -1,0 +1,17 @@
+const express = require('express');
+const app = express();
+const port = 3001;
+
+app.get('/api/data', (req, res) => {
+    res.json({ message: 'Data from New Backend' });
+});
+
+app.get('/api/switch', (req, res) => {
+    console.log('Switching to New Backend');
+    res.send('Switched to New Backend');
+});
+
+app.listen(port, () => {
+    console.log(`New Backend listening at http://localhost:${port}`);
+});
+￼Enter
