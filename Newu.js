@@ -194,3 +194,33 @@ app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
 ￼Enter
+
+
+// ... (existing code)
+
+app.get('/search', async (req, res) => {
+  const { query } = req.query;
+
+  if (!query) {
+    return res.status(400).json({ error: 'Search query is required' });
+  }
+
+  try {
+    // Assume your Sequelize model is named Movie
+    const searchResults = await Movie.findAll({
+      where: {
+        title: {
+          [Sequelize.Op.iLike]: `%${query}%`, // Case-insensitive search
+        },
+      },
+    });
+
+    res.json(searchResults);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+// ... (existing code)
+
