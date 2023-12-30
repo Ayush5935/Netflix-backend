@@ -1,0 +1,37 @@
+Sure, let's set up Postman to interact with the CRUD operations for movies. Below are the configurations for each CRUD operation along with their respective request bodies.
+
+### 1. **Get All Movies**
+- **Request Type:** GET
+- **Endpoint:** `http://localhost:3000/movies`
+
+### 2. **Create a New Movie**
+- **Request Type:** POST
+- **Endpoint:** `http://localhost:3000/movies`
+- **Body (raw JSON):**
+    ```json
+    {
+        "title": "The Matrix",
+        "genre": "Sci-Fi"
+    }
+    ```
+
+### 3. **Update a Movie**
+- **Request Type:** PUT
+- **Endpoint:** `http://localhost:3000/movies/{id}` (replace `{id}` with the actual movie ID)
+- **Body (raw JSON):**
+    ```json
+    {
+        "title": "Updated Title",
+        "genre": "Updated Genre"
+    }
+    ```
+
+### 4. **Delete a Movie**
+- **Request Type:** DELETE
+- **Endpoint:** `http://localhost:3000/movies/{id}` (replace `{id}` with the actual movie ID)
+
+Make sure to replace `{id}` in the update and delete endpoints with the ID of an existing movie.
+
+Please note that for updating and deleting, you need to have an existing movie ID. If you don't have one, you can create a movie first and then use its ID for updating and deleting.
+
+Let me know if you encounter any issues or if you need further clarification!￼Enter
