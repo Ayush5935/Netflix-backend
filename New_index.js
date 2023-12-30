@@ -44,52 +44,6 @@ const getMovies = async () => {
 
 const getMovieById = async (id) => {
   return await Movie.findByPk(id);
-const express = require('express');
-const bodyParser = require('body-parser');
-const falcorExpress = require('express-falcor');
-const { Sequelize, DataTypes } = require('sequelize');
-
-const app = express();
-const port = 3000;
-
-// Connect to PostgreSQL database
-const sequelize = new Sequelize('postgres://username:password@localhost:5432/yourdatabase');
-
-// Define Movie model
-const Movie = sequelize.define('Movie', {
-  title: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  genre: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-});
-
-sequelize.sync();
-
-const model = {
-  cache: {
-    movies: [
-      { $type: 'ref', value: ['moviesById', 1] },
-      { $type: 'ref', value: ['moviesById', 2] },
-    ],
-    moviesById: {
-      1: { id: 1, title: 'Inception', genre: 'Sci-Fi' },
-      2: { id: 2, title: 'The Shawshank Redemption', genre: 'Drama' },
-    },
-  },
-};
-
-// Add these functions after the Sequelize model definition
-
-const getMovies = async () => {
-  return await Movie.findAll();
-};
-
-const getMovieById = async (id) => {
-  return await Movie.findByPk(id);
 };
 
 const createMovie = async (data) => {
